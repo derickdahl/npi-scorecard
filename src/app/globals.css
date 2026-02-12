@@ -1,0 +1,357 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Sonance Brand Colors */
+  --sonance-charcoal: #333F48;
+  --sonance-blue: #00A3E1;
+  --sonance-light-gray: #D9D9D6;
+  --sonance-white: #FFFFFF;
+  --sonance-black: #000000;
+  --sonance-silver: #D9D9D6;
+
+  /* Gray Scale */
+  --sonance-gray-50: #f8f9fa;
+  --sonance-gray-100: #f0f2f3;
+  --sonance-gray-200: #D9D9D6;
+  --sonance-gray-300: #b8bfc4;
+  --sonance-gray-400: #8f999f;
+  --sonance-gray-500: #6b7780;
+  --sonance-gray-600: #515c64;
+  --sonance-gray-700: #424c54;
+  --sonance-gray-800: #3a444c;
+  --sonance-gray-900: #333F48;
+
+  /* Light Mode - Backgrounds */
+  --background: #FFFFFF;
+  --background-secondary: #f8f9fa;
+  --background-tertiary: #f0f2f3;
+  --background-elevated: #FFFFFF;
+
+  /* Light Mode - Foreground / Text */
+  --foreground: #333F48;
+  --foreground-secondary: #515c64;
+  --foreground-muted: #6b7780;
+  --foreground-subtle: #8f999f;
+
+  /* Light Mode - Borders & Dividers */
+  --border: #D9D9D6;
+  --border-hover: #b8bfc4;
+  --border-focus: #333F48;
+  --divider: #f0f2f3;
+
+  /* Light Mode - Interactive Elements */
+  --primary: #333F48;
+  --primary-hover: #2a343c;
+  --primary-active: #212930;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: transparent;
+  --secondary-hover: #f0f1f2;
+  --secondary-foreground: #343d46;
+
+  /* Light Mode - Cards & Surfaces */
+  --card: #FFFFFF;
+  --card-hover: #f8f9f9;
+  --card-border: #e2e2e2;
+  --card-bg: #FFFFFF;
+  --border-subtle: #e2e2e2;
+
+  /* Light Mode - Input Fields */
+  --input: #FFFFFF;
+  --input-border: #e2e2e2;
+  --input-focus: #343d46;
+  --input-placeholder: #9ea5aa;
+
+  /* Feedback Colors */
+  --success: #2E7D32;
+  --success-light: #e8f5e9;
+  --error: #C62828;
+  --error-light: #ffebee;
+  --warning: #F57C00;
+  --warning-light: #fff3e0;
+  --info: #1565C0;
+  --info-light: #e3f2fd;
+
+  /* Border Radius - Liquid Glass */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Glass System */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-hover: rgba(255, 255, 255, 0.8);
+  --glass-bg-elevated: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-border-hover: rgba(0, 0, 0, 0.12);
+  --glass-blur-sm: 8px;
+  --glass-blur-md: 12px;
+  --glass-blur-lg: 20px;
+  --glass-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --glass-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --glass-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+  /* Glow Effects */
+  --glow-primary: rgba(0, 163, 225, 0.2);
+  --glow-primary-subtle: rgba(0, 163, 225, 0.1);
+  --glow-primary-intense: rgba(0, 163, 225, 0.35);
+}
+
+/* Dark Mode - triggered by .dark class */
+:root.dark {
+  --background: #1a1f24;
+  --background-secondary: #242a31;
+  --background-tertiary: #2d343c;
+  --background-elevated: #333F48;
+
+  --foreground: #FFFFFF;
+  --foreground-secondary: #D9D9D6;
+  --foreground-muted: #8f999f;
+  --foreground-subtle: #6b7780;
+
+  --border: #3a444c;
+  --border-hover: #424c54;
+  --border-focus: #D9D9D6;
+  --divider: #2d343c;
+
+  --primary: #FFFFFF;
+  --primary-hover: #D9D9D6;
+  --primary-active: #b8bfc4;
+  --primary-foreground: #333F48;
+
+  --secondary: transparent;
+  --secondary-hover: #2d343c;
+  --secondary-foreground: #FFFFFF;
+
+  --card: #242a31;
+  --card-hover: #2d343c;
+  --card-border: #3d474f;
+  --card-bg: #242a31;
+  --border-subtle: #3a444c;
+
+  --input: #2d343c;
+  --input-border: #3d474f;
+  --input-focus: #FFFFFF;
+  --input-placeholder: #7a8389;
+
+  --success: #4CAF50;
+  --success-light: rgba(76, 175, 80, 0.15);
+  --error: #EF5350;
+  --error-light: rgba(239, 83, 80, 0.15);
+  --warning: #FFB74D;
+  --warning-light: rgba(255, 183, 77, 0.15);
+  --info: #42A5F5;
+  --info-light: rgba(66, 165, 245, 0.15);
+
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-hover: rgba(255, 255, 255, 0.06);
+  --glass-bg-elevated: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 255, 255, 0.12);
+}
+
+/* Dark Mode - system preference fallback */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #1a1f24;
+    --background-secondary: #242a31;
+    --background-tertiary: #2d343c;
+    --background-elevated: #333F48;
+
+    --foreground: #FFFFFF;
+    --foreground-secondary: #D9D9D6;
+    --foreground-muted: #8f999f;
+    --foreground-subtle: #6b7780;
+
+    --border: #3a444c;
+    --border-hover: #424c54;
+    --border-focus: #D9D9D6;
+    --divider: #2d343c;
+
+    --primary: #FFFFFF;
+    --primary-hover: #D9D9D6;
+    --primary-active: #b8bfc4;
+    --primary-foreground: #333F48;
+
+    --secondary: transparent;
+    --secondary-hover: #2d343c;
+    --secondary-foreground: #FFFFFF;
+
+    --card: #242a31;
+    --card-hover: #2d343c;
+    --card-border: #3d474f;
+
+    --input: #2d343c;
+    --input-border: #3d474f;
+    --input-focus: #FFFFFF;
+    --input-placeholder: #7a8389;
+
+    --success: #4CAF50;
+    --success-light: rgba(76, 175, 80, 0.15);
+    --error: #EF5350;
+    --error-light: rgba(239, 83, 80, 0.15);
+    --warning: #FFB74D;
+    --warning-light: rgba(255, 183, 77, 0.15);
+    --info: #42A5F5;
+    --info-light: rgba(66, 165, 245, 0.15);
+
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-bg-hover: rgba(255, 255, 255, 0.06);
+    --glass-bg-elevated: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-hover: rgba(255, 255, 255, 0.12);
+    --glass-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --glass-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+    --glass-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+    --glow-primary: rgba(0, 163, 225, 0.35);
+    --glow-primary-subtle: rgba(0, 163, 225, 0.2);
+    --glow-primary-intense: rgba(0, 163, 225, 0.5);
+  }
+}
+
+/* Tailwind Theme */
+@theme inline {
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-tertiary: var(--background-tertiary);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-sonance-charcoal: var(--sonance-charcoal);
+  --color-sonance-blue: var(--sonance-blue);
+  --color-sonance-silver: var(--sonance-silver);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glass Card Utility */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur-lg));
+  -webkit-backdrop-filter: blur(var(--glass-blur-lg));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-md);
+  border-radius: var(--radius-lg);
+  transition: all 0.2s ease-out;
+}
+
+.glass-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-lg), 0 0 20px var(--glow-primary-subtle);
+}
+
+/* Scrollbar Styling */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border-hover);
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Selection Style */
+::selection {
+  background: var(--sonance-charcoal);
+  color: var(--sonance-white);
+}
+
+/* Sonance Button Styles */
+.btn-primary {
+  background-color: var(--sonance-blue);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #0090c8;
+  box-shadow: 0 0 20px var(--glow-primary);
+}
+
+.btn-secondary {
+  background-color: var(--sonance-charcoal);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #2a3138;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
