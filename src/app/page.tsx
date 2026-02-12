@@ -64,7 +64,7 @@ export default async function HomePage() {
               S
             </div>
             <h1 className="text-2xl font-light tracking-tight">
-              NPI Patent <span className="text-[#00A3E1]">Tracker</span>
+              NPI Patent <span className="text-[#00A3E1]">Tracker</span> — All 18 EPR Drafts
             </h1>
           </div>
         </header>
