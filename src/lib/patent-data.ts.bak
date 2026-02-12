@@ -1,0 +1,435 @@
+// Comprehensive patent analysis data for all 9 patents with invalidity contentions
+
+export interface PriorArtRef {
+  name: string
+  patent_number?: string
+  citation: string
+  relevance: string
+  confidence: number
+}
+
+export interface ClaimElement {
+  id: string
+  text: string
+  prior_art_coverage: string
+  confidence: number
+}
+
+export interface PatentAnalysis {
+  patent_number: string
+  short_name: string
+  title: string
+  filing_date: string
+  issue_date: string
+  assignee: string
+  overall_confidence: number
+  status: string
+  recommendation: string
+  summary: string
+  independentClaims: number
+  claim1Elements: ClaimElement[]
+  claim1Label: string
+  claim1Description: string
+  claim2Elements: ClaimElement[]
+  claim2Label: string
+  claim2Description: string
+  claim3Elements?: ClaimElement[]
+  claim3Label?: string
+  claim3Description?: string
+  prior_art: PriorArtRef[]
+}
+
+export const PATENT_DATA: Record<string, PatentAnalysis> = {
+  '275': {
+    patent_number: 'US 10,778,275',
+    short_name: '275',
+    title: 'Docking Sleeve with Electrical Adapter',
+    filing_date: '2020-04-21',
+    issue_date: '2020-09-15',
+    assignee: 'National Products, Inc.',
+    overall_confidence: 88,
+    status: 'analyzed',
+    recommendation: 'File EPR',
+    summary: 'Strong invalidity case based on Thiers (9,019,698) and Kim '099. All claim elements have prior art coverage with high confidence.',
+    independentClaims: 2,
+    claim1Label: 'Claim 1',
+    claim1Description: 'Protective cover for portable electronic device with panel, skirt, male plug, contactors, and female nest',
+    claim1Elements: [
+      { id: '1[Pre]', text: 'A protective cover for a portable electronic device', prior_art_coverage: 'Thiers 9,019,698; Supran 8,553,408; Kim '099', confidence: 95 },
+      { id: '1[a]', text: 'a panel comprising an exterior surface', prior_art_coverage: 'Thiers Fig. 9 (rear cover 24); Supran (sleeve exterior)', confidence: 92 },
+      { id: '1[b]', text: 'a skirt surrounding a perimeter of the panel', prior_art_coverage: 'Thiers 10:51-53; Supran 9:58-67', confidence: 90 },
+      { id: '1[c]', text: 'a male plug supported by the panel', prior_art_coverage: 'Thiers Fig. 3; Kim '099 Fig. 1-2', confidence: 88 },
+      { id: '1[d]', text: 'at least four contactors on the male plug', prior_art_coverage: 'Thiers claim 18; Kim '099 [31]', confidence: 85 },
+      { id: '1[e]', text: 'a female nest in electrical communication with contactors', prior_art_coverage: 'Thiers Abstract; Kim '099 [12]', confidence: 87 },
+    ],
+    claim2Label: 'Claim 19',
+    claim2Description: 'Docking system comprising protective cover and docking station',
+    claim2Elements: [
+      { id: '19[Pre]', text: 'A docking system comprising', prior_art_coverage: 'Thiers Abstract; Supran 2:14-3:11', confidence: 94 },
+      { id: '19[a]', text: 'a protective cover for a portable electronic device', prior_art_coverage: 'See Claim 1 analysis', confidence: 90 },
+      { id: '19[b]', text: 'a docking station comprising a base', prior_art_coverage: 'Thiers Fig. 1; Kim '099 (charging mount 200)', confidence: 88 },
+      { id: '19[c]', text: 'docking connector supported by the base', prior_art_coverage: 'Thiers 9:34-40; Kim '099 [31]', confidence: 86 },
+    ],
+    prior_art: [
+      { name: 'Thiers', patent_number: '9,019,698', citation: 'U.S. Patent No. 9,019,698', relevance: 'Primary reference - discloses protective case with dock interface assembly', confidence: 95 },
+      { name: 'Supran', patent_number: '8,553,408', citation: 'U.S. Patent No. 8,553,408', relevance: 'Discloses protective sleeve with docking system', confidence: 88 },
+      { name: 'Kim '099', patent_number: 'WO 2014/010781', citation: 'WO 2014/010781', relevance: 'Discloses charging apparatus with terminal casing', confidence: 90 },
+      { name: 'Rayner-494', patent_number: '9,229,494', citation: 'U.S. Patent No. 9,229,494', relevance: 'Discloses protective housing with docking interface', confidence: 85 },
+      { name: 'iPort LaunchPort', citation: 'iPort LaunchPort Product (Pre-2014)', relevance: 'Commercial product showing protective case with charging', confidence: 82 },
+      { name: 'Infinea Tab M', citation: 'Infinite Peripherals Infinea Tab M', relevance: 'Commercial product with protective case and connectors', confidence: 80 },
+    ],
+  },
+
+  '444': {
+    patent_number: 'US 9,331,444',
+    short_name: '444',
+    title: 'Docking Sleeve with Electrical Adapter',
+    filing_date: '2014-03-21',
+    issue_date: '2016-05-03',
+    assignee: 'National Products, Inc.',
+    overall_confidence: 94,
+    status: 'analyzed',
+    recommendation: 'File EPR',
+    summary: 'Very strong invalidity case. Hoellwarth \'850 provides excellent coverage for adapter and shell elements. Combined with Wilson and Rayner, all independent claims are anticipated or obvious.',
+    independentClaims: 3,
+    claim1Label: 'Claim 1',
+    claim1Description: 'Protective cover with shell, adapter, male plug, and contactors',
+    claim1Elements: [
+      { id: '1[Pre]', text: 'A removable cover for a portable electronic device', prior_art_coverage: 'Hoellwarth \'850; Wilson; iPort LaunchPort', confidence: 96 },
+      { id: '1[a]', text: 'a shell having a skirt surrounding a perimeter', prior_art_coverage: 'Hoellwarth \'850 Fig. 4-5; Wilson Fig. 1', confidence: 95 },
+      { id: '1[b]', text: 'a shell defining a female nest', prior_art_coverage: 'Hoellwarth \'850 (shell cavity); Supran', confidence: 94 },
+      { id: '1[c]', text: 'an adapter supported by the shell', prior_art_coverage: 'Hoellwarth \'850 Fig. 9; Rayner \'494', confidence: 96 },
+      { id: '1[d]', text: 'the adapter comprising a male plug', prior_art_coverage: 'Hoellwarth \'850 (connector 44); Wilson', confidence: 93 },
+      { id: '1[e]', text: 'at least four first contactors on the male plug', prior_art_coverage: 'Hoellwarth \'850 42:60-43:3; Rayner', confidence: 92 },
+      { id: '1[f]', text: 'at least four second contactors exposed on exterior', prior_art_coverage: 'Hoellwarth \'850; Infinea Tab M', confidence: 91 },
+      { id: '1[g]', text: 'adapter positioned within the skirt of the shell', prior_art_coverage: 'Hoellwarth \'850 Fig. 9 (red highlight)', confidence: 95 },
+    ],
+    claim2Label: 'Claim 19',
+    claim2Description: 'Protective cover with shell, female nest, adapter, and male plug interfacing with device port',
+    claim2Elements: [
+      { id: '19[Pre]', text: 'A protective cover for a portable electronic device', prior_art_coverage: 'Hoellwarth \'850; Thiers; Supran', confidence: 95 },
+      { id: '19[a]', text: 'a shell defining a female nest', prior_art_coverage: 'See Claim 1[b]', confidence: 94 },
+      { id: '19[b]', text: 'an adapter supported by the shell', prior_art_coverage: 'See Claim 1[c]', confidence: 96 },
+      { id: '19[c]', text: 'adapter comprising male plug to interface with port', prior_art_coverage: 'Hoellwarth \'850 (Lightning/microUSB)', confidence: 95 },
+      { id: '19[d]', text: 'at least two first contactors on male plug', prior_art_coverage: 'Hoellwarth \'850; Wilson', confidence: 93 },
+      { id: '19[e]', text: 'at least two second contactors on exterior', prior_art_coverage: 'Hoellwarth \'850; Rayner', confidence: 92 },
+    ],
+    claim3Label: 'Claim 28',
+    claim3Description: 'Docking system comprising protective cover and docking connector',
+    claim3Elements: [
+      { id: '28[Pre]', text: 'A docking system comprising', prior_art_coverage: 'Hoellwarth \'850 + \'343; Wilson; Thiers', confidence: 94 },
+      { id: '28[a]', text: 'a protective cover per claim 19', prior_art_coverage: 'See Claim 19 analysis', confidence: 95 },
+      { id: '28[b]', text: 'a docking connector configured to mate with adapter', prior_art_coverage: 'Hoellwarth \'343 (base station); Wilson', confidence: 93 },
+    ],
+    prior_art: [
+      { name: 'Hoellwarth \'850', patent_number: '9,939,850', citation: 'U.S. Patent No. 9,939,850', relevance: 'Primary reference - discloses shell, adapter, male plug, contactors in detail', confidence: 96 },
+      { name: 'Hoellwarth \'343', patent_number: '9,595,343', citation: 'U.S. Patent No. 9,595,343', relevance: 'Discloses docking station/base for the system', confidence: 90 },
+      { name: 'Wilson', patent_number: '8,867,209', citation: 'U.S. Patent No. 8,867,209', relevance: 'Discloses protective cover with integrated adapter', confidence: 88 },
+      { name: 'Rayner \'494', patent_number: '9,229,494', citation: 'U.S. Patent No. 9,229,494', relevance: 'Discloses housing with alignment features and contactors', confidence: 85 },
+      { name: 'iPort LaunchPort', citation: 'iPort LaunchPort Product (Pre-2014)', relevance: 'Commercial product with shell and adapter design', confidence: 88 },
+      { name: 'Infinea Tab M', citation: 'Infinite Peripherals Infinea Tab M', relevance: 'Commercial product with exposed contactors', confidence: 82 },
+      { name: 'Supran', patent_number: '8,553,408', citation: 'U.S. Patent No. 8,553,408', relevance: 'Discloses sleeve with conductive charging and dam', confidence: 85 },
+      { name: 'Thiers', patent_number: '9,019,698', citation: 'U.S. Patent No. 9,019,698', relevance: 'Discloses alignment feature and dock interface assembly', confidence: 87 },
+    ],
+  },
+
+  '140': {
+    patent_number: 'US 12,143,140',
+    short_name: '140',
+    title: 'Docking Sleeve with Electrical Adapter',
+    filing_date: '2024-04-17',
+    issue_date: '2024-11-12',
+    assignee: 'National Products, Inc.',
+    overall_confidence: 91,
+    status: 'analyzed',
+    recommendation: 'File EPR',
+    summary: 'Strong invalidity case. Thiers and Supran provide comprehensive coverage for protective case elements. Kim '099 and Rayner strengthen the combination.',
+    independentClaims: 2,
+    claim1Label: 'Claim 1',
+    claim1Description: 'Protective case with panel, skirt, male plug, contactors, and female nest',
+    claim1Elements: [
+      { id: '1[Pre]', text: 'A protective case for a portable electronic device', prior_art_coverage: 'Thiers 9,019,698; Supran 8,553,408; Kim '099', confidence: 94 },
+      { id: '1[a]', text: 'a panel comprising an exterior surface', prior_art_coverage: 'Thiers Fig. 9 (rear cover 24); Supran (sleeve)', confidence: 92 },
+      { id: '1[b][i]', text: 'a skirt surrounding a perimeter of the panel', prior_art_coverage: 'Thiers 10:51-53 (bumpers); Supran 9:58-67', confidence: 90 },
+      { id: '1[b][ii]', text: 'wherein the panel defines an opening', prior_art_coverage: 'Thiers Fig. 9; Rayner-494', confidence: 88 },
+      { id: '1[c][i]', text: 'a male plug extending through the opening', prior_art_coverage: 'Thiers Fig. 3; Kim '099 [31]', confidence: 91 },
+      { id: '1[c][ii]', text: 'male plug configured to interface with device port', prior_art_coverage: 'Thiers claim 18; Kim '099 [12]', confidence: 89 },
+      { id: '1[d][i]', text: 'at least four second contactors', prior_art_coverage: 'Thiers; Kim '099; Infinea Tab M', confidence: 88 },
+      { id: '1[e][i]', text: 'a female nest in electrical communication', prior_art_coverage: 'Thiers Abstract; iPort LaunchPort', confidence: 90 },
+    ],
+    claim2Label: 'Claim 7',
+    claim2Description: 'Docking system with protective case and docking station',
+    claim2Elements: [
+      { id: '7[Pre]', text: 'A docking system, comprising', prior_art_coverage: 'Thiers Abstract; Supran 2:14-3:11', confidence: 93 },
+      { id: '7[a]', text: 'the protective case of claim 1', prior_art_coverage: 'See Claim 1 analysis', confidence: 91 },
+      { id: '7[b]', text: 'a docking station comprising a base', prior_art_coverage: 'Thiers Fig. 1; Kim '099 (charging mount 200)', confidence: 89 },
+    ],
+    prior_art: [
+      { name: 'Thiers', patent_number: '9,019,698', citation: 'U.S. Patent No. 9,019,698', relevance: 'Primary reference - protective case with dock interface', confidence: 94 },
+      { name: 'Supran', patent_number: '8,553,408', citation: 'U.S. Patent No. 8,553,408', relevance: 'Protective sleeve with docking system', confidence: 88 },
+      { name: 'Kim '099', patent_number: 'WO 2014/010781', citation: 'WO 2014/010781', relevance: 'Charging apparatus with terminal casing', confidence: 90 },
+      { name: 'Rayner-494', patent_number: '9,229,494', citation: 'U.S. Patent No. 9,229,494', relevance: 'Protective housing with alignment features', confidence: 85 },
+      { name: 'iPort LaunchPort', citation: 'iPort LaunchPort Product (Pre-2014)', relevance: 'Commercial product with case and charging', confidence: 82 },
+      { name: 'Infinea Tab M', citation: 'Infinite Peripherals Infinea Tab M', relevance: 'Commercial product with connectors', confidence: 80 },
+    ],
+  },
+
+  '141': {
+    patent_number: 'US 12,143,141',
+    short_name: '141',
+    title: 'Docking Sleeve with Electrical Adapter',
+    filing_date: '2024-04-17',
+    issue_date: '2024-11-12',
+    assignee: 'National Products, Inc.',
+    overall_confidence: 90,
+    status: 'analyzed',
+    recommendation: 'File EPR',
+    summary: 'Strong invalidity case using same prior art combination as \'140. Thiers and Supran cover the core elements.',
+    independentClaims: 2,
+    claim1Label: 'Claim 1',
+    claim1Description: 'Protective case with panel, skirt, male plug, and contactors',
+    claim1Elements: [
+      { id: '1[Pre]', text: 'A protective case for a portable electronic device', prior_art_coverage: 'Thiers; Supran; Kim '099; Rayner-494', confidence: 93 },
+      { id: '1[a]', text: 'a panel comprising an exterior surface', prior_art_coverage: 'Thiers Fig. 9; Supran sleeve', confidence: 91 },
+      { id: '1[b]', text: 'a skirt surrounding a perimeter', prior_art_coverage: 'Thiers 10:51-53; Supran', confidence: 89 },
+      { id: '1[c]', text: 'a male plug supported by the panel', prior_art_coverage: 'Thiers Fig. 3; Kim '099', confidence: 90 },
+      { id: '1[d]', text: 'contactors on the male plug', prior_art_coverage: 'Thiers; Kim '099; Infinea Tab M', confidence: 88 },
+    ],
+    claim2Label: 'Claim 13',
+    claim2Description: 'Docking system with protective case and docking connector',
+    claim2Elements: [
+      { id: '13[Pre]', text: 'A docking system, comprising', prior_art_coverage: 'Thiers Abstract; Supran', confidence: 92 },
+      { id: '13[a]', text: 'the protective case of claim 1', prior_art_coverage: 'See Claim 1 analysis', confidence: 90 },
+      { id: '13[b]', text: 'a docking connector configured to mate', prior_art_coverage: 'Thiers; Kim '099 charging mount', confidence: 88 },
+    ],
+    prior_art: [
+      { name: 'Thiers', patent_number: '9,019,698', citation: 'U.S. Patent No. 9,019,698', relevance: 'Primary reference - protective case with dock interface', confidence: 93 },
+      { name: 'Supran', patent_number: '8,553,408', citation: 'U.S. Patent No. 8,553,408', relevance: 'Protective sleeve with docking', confidence: 87 },
+      { name: 'Kim '099', patent_number: 'WO 2014/010781', citation: 'WO 2014/010781', relevance: 'Charging apparatus with casing', confidence: 89 },
+      { name: 'Rayner-494', patent_number: '9,229,494', citation: 'U.S. Patent No. 9,229,494', relevance: 'Protective housing', confidence: 84 },
+      { name: 'iPort LaunchPort', citation: 'iPort LaunchPort Product', relevance: 'Commercial prior art', confidence: 81 },
+      { name: 'Infinea Tab M', citation: 'Infinite Peripherals Infinea Tab M', relevance: 'Commercial product', confidence: 79 },
+    ],
+  },
+
+  '142': {
+    patent_number: 'US 12,143,142',
+    short_name: '142',
+    title: 'Docking Sleeve with Electrical Adapter',
+    filing_date: '2024-04-17',
+    issue_date: '2024-11-12',
+    assignee: 'National Products, Inc.',
+    overall_confidence: 89,
+    status: 'analyzed',
+    recommendation: 'File EPR',
+    summary: 'Strong invalidity case. Same prior art family applies with high coverage across all elements.',
+    independentClaims: 2,
+    claim1Label: 'Claim 1',
+    claim1Description: 'Protective case with panel, skirt, male plug, and contactors',
+    claim1Elements: [
+      { id: '1[Pre]', text: 'A protective case for a portable electronic device', prior_art_coverage: 'Thiers; Supran; Kim '099', confidence: 92 },
+      { id: '1[a]', text: 'a panel comprising an exterior surface', prior_art_coverage: 'Thiers Fig. 9; Supran', confidence: 90 },
+      { id: '1[b]', text: 'a skirt surrounding a perimeter', prior_art_coverage: 'Thiers; Supran', confidence: 88 },
+      { id: '1[c]', text: 'a male plug supported by the panel', prior_art_coverage: 'Thiers; Kim '099', confidence: 89 },
+      { id: '1[d]', text: 'contactors exposed on exterior', prior_art_coverage: 'Thiers; Infinea Tab M', confidence: 87 },
+    ],
+    claim2Label: 'Claim 14',
+    claim2Description: 'Docking system with protective case and docking station',
+    claim2Elements: [
+      { id: '14[Pre]', text: 'A docking system, comprising', prior_art_coverage: 'Thiers; Supran', confidence: 91 },
+      { id: '14[a]', text: 'the protective case of claim 1', prior_art_coverage: 'See Claim 1 analysis', confidence: 89 },
+      { id: '14[b]', text: 'a docking station with base', prior_art_coverage: 'Thiers; Kim '099', confidence: 87 },
+    ],
+    prior_art: [
+      { name: 'Thiers', patent_number: '9,019,698', citation: 'U.S. Patent No. 9,019,698', relevance: 'Primary reference', confidence: 92 },
+      { name: 'Supran', patent_number: '8,553,408', citation: 'U.S. Patent No. 8,553,408', relevance: 'Protective sleeve', confidence: 86 },
+      { name: 'Kim '099', patent_number: 'WO 2014/010781', citation: 'WO 2014/010781', relevance: 'Charging apparatus', confidence: 88 },
+      { name: 'Rayner-494', patent_number: '9,229,494', citation: 'U.S. Patent No. 9,229,494', relevance: 'Protective housing', confidence: 83 },
+      { name: 'iPort LaunchPort', citation: 'iPort LaunchPort Product', relevance: 'Commercial prior art', confidence: 80 },
+      { name: 'Infinea Tab M', citation: 'Infinite Peripherals Infinea Tab M', relevance: 'Commercial product', confidence: 78 },
+    ],
+  },
+
+  '279': {
+    patent_number: 'US 9,195,279',
+    short_name: '279',
+    title: 'Docking Sleeve with Electrical Adapter',
+    filing_date: '2015-03-24',
+    issue_date: '2015-11-24',
+    assignee: 'National Products, Inc.',
+    overall_confidence: 87,
+    status: 'analyzed',
+    recommendation: 'File EPR',
+    summary: 'Good invalidity case. Kim \'099 (sliding connector) and Rayner \'494 provide primary coverage. Three independent claims covering protective cover and docking system.',
+    independentClaims: 3,
+    claim1Label: 'Claim 1',
+    claim1Description: 'Protective cover for electronic device with flexible shell, panel, skirt, and connectors',
+    claim1Elements: [
+      { id: '1[Pre]', text: 'A protective cover for an electronic device', prior_art_coverage: 'Kim \'099; Rayner-494', confidence: 90 },
+      { id: '1[a]', text: 'a flexible protective shell with panel and skirt', prior_art_coverage: 'Kim \'099 [0009]; Rayner-494 Abstract', confidence: 88 },
+      { id: '1[b]', text: 'panel and skirt form interior cavity', prior_art_coverage: 'Rayner-494; Supran', confidence: 87 },
+      { id: '1[c]', text: 'male plug extending into cavity', prior_art_coverage: 'Kim \'099 (sliding connector 100)', confidence: 89 },
+      { id: '1[d]', text: 'contactor on exterior surface', prior_art_coverage: 'Thiers; iPort LaunchPort', confidence: 85 },
+    ],
+    claim2Label: 'Claim 9',
+    claim2Description: 'Docking system with protective cover and docking connector',
+    claim2Elements: [
+      { id: '9[Pre]', text: 'A docking system, comprising', prior_art_coverage: 'Rayner-494; Thiers', confidence: 89 },
+      { id: '9[a]', text: 'a protective cover per claim 1', prior_art_coverage: 'See Claim 1 analysis', confidence: 88 },
+      { id: '9[b]', text: 'a docking connector configured to mate', prior_art_coverage: 'Rayner-494; Supran', confidence: 86 },
+    ],
+    claim3Label: 'Claim 20',
+    claim3Description: 'Protective cover with spaced front/back faces and female socket',
+    claim3Elements: [
+      { id: '20[Pre]', text: 'A protective cover with spaced apart front and back faces', prior_art_coverage: 'Rayner-494 Figs. 16A-F', confidence: 88 },
+      { id: '20[a]', text: 'side faces extended therebetween', prior_art_coverage: 'Rayner-494; Supran', confidence: 86 },
+      { id: '20[b]', text: 'female socket on device', prior_art_coverage: 'Rayner-494; Thiers', confidence: 85 },
+    ],
+    prior_art: [
+      { name: 'Kim \'099', patent_number: 'KR 10-2013-0050099', citation: 'Korean Patent Application', relevance: 'Primary - sliding connector protecting case', confidence: 90 },
+      { name: 'Rayner-494', patent_number: '9,229,494', citation: 'U.S. Patent No. 9,229,494', relevance: 'Housing for electronic device with protection', confidence: 88 },
+      { name: 'Thiers', patent_number: '9,019,698', citation: 'U.S. Patent No. 9,019,698', relevance: 'Dock interface assembly', confidence: 85 },
+      { name: 'Supran', patent_number: '8,553,408', citation: 'U.S. Patent No. 8,553,408', relevance: 'Protective sleeve with docking', confidence: 83 },
+      { name: 'iPort LaunchPort', citation: 'iPort LaunchPort Product', relevance: 'Commercial prior art', confidence: 79 },
+      { name: 'Infinea Tab M', citation: 'Infinite Peripherals Infinea Tab M', relevance: 'Commercial product', confidence: 77 },
+    ],
+  },
+
+  '458': {
+    patent_number: 'US 11,165,458',
+    short_name: '458',
+    title: 'Docking Sleeve with Electrical Adapter',
+    filing_date: '2020-12-14',
+    issue_date: '2021-11-02',
+    assignee: 'National Products, Inc.',
+    overall_confidence: 92,
+    status: 'analyzed',
+    recommendation: 'File EPR',
+    summary: 'Very strong case. Hoellwarth \'850 added to the combination provides excellent coverage for adapter elements.',
+    independentClaims: 2,
+    claim1Label: 'Claim 12',
+    claim1Description: 'Protective cover with shell, adapter, male plug, and contactors',
+    claim1Elements: [
+      { id: '12[Pre]', text: 'A protective cover for a portable electronic device', prior_art_coverage: 'Hoellwarth \'850; Thiers; Supran', confidence: 94 },
+      { id: '12[a]', text: 'a shell having a skirt', prior_art_coverage: 'Hoellwarth \'850 Fig. 4-5; Thiers', confidence: 93 },
+      { id: '12[b]', text: 'an adapter supported by the shell', prior_art_coverage: 'Hoellwarth \'850 Fig. 9', confidence: 94 },
+      { id: '12[c]', text: 'male plug with contactors', prior_art_coverage: 'Hoellwarth \'850; Kim '099', confidence: 91 },
+      { id: '12[d]', text: 'second contactors on exterior', prior_art_coverage: 'Hoellwarth \'850; Infinea Tab M', confidence: 90 },
+    ],
+    claim2Label: 'Claim 20',
+    claim2Description: 'Docking system with protective cover and docking connector',
+    claim2Elements: [
+      { id: '20[Pre]', text: 'A docking system, comprising', prior_art_coverage: 'Hoellwarth; Thiers', confidence: 93 },
+      { id: '20[a]', text: 'the protective cover of claim 12', prior_art_coverage: 'See Claim 12 analysis', confidence: 92 },
+      { id: '20[b]', text: 'a docking connector', prior_art_coverage: 'Hoellwarth \'343; Thiers', confidence: 90 },
+    ],
+    prior_art: [
+      { name: 'Hoellwarth \'850', patent_number: '9,939,850', citation: 'U.S. Patent No. 9,939,850', relevance: 'Primary reference - shell, adapter, contactors', confidence: 94 },
+      { name: 'Thiers', patent_number: '9,019,698', citation: 'U.S. Patent No. 9,019,698', relevance: 'Protective case with dock interface', confidence: 91 },
+      { name: 'Supran', patent_number: '8,553,408', citation: 'U.S. Patent No. 8,553,408', relevance: 'Protective sleeve', confidence: 86 },
+      { name: 'Kim '099', patent_number: 'WO 2014/010781', citation: 'WO 2014/010781', relevance: 'Charging apparatus', confidence: 88 },
+      { name: 'Rayner-494', patent_number: '9,229,494', citation: 'U.S. Patent No. 9,229,494', relevance: 'Protective housing', confidence: 84 },
+      { name: 'iPort LaunchPort', citation: 'iPort LaunchPort Product', relevance: 'Commercial prior art', confidence: 81 },
+      { name: 'Infinea Tab M', citation: 'Infinite Peripherals Infinea Tab M', relevance: 'Commercial product', confidence: 79 },
+    ],
+  },
+
+  '535': {
+    patent_number: 'US 9,632,535',
+    short_name: '535',
+    title: 'Docking Sleeve with Electrical Adapter',
+    filing_date: '2015-11-13',
+    issue_date: '2017-04-25',
+    assignee: 'National Products, Inc.',
+    overall_confidence: 93,
+    status: 'analyzed',
+    recommendation: 'File EPR',
+    summary: 'Very strong case. Full prior art combination including Hoellwarth \'850, Wilson, and Thiers provides comprehensive coverage.',
+    independentClaims: 2,
+    claim1Label: 'Claim 15',
+    claim1Description: 'Protective cover with shell, adapter, and electrical connections',
+    claim1Elements: [
+      { id: '15[Pre]', text: 'A protective cover for a portable electronic device', prior_art_coverage: 'Hoellwarth \'850; Wilson; Thiers', confidence: 95 },
+      { id: '15[a]', text: 'a shell having a skirt', prior_art_coverage: 'Hoellwarth \'850; Wilson Fig. 1', confidence: 94 },
+      { id: '15[b]', text: 'an adapter supported by the shell', prior_art_coverage: 'Hoellwarth \'850 Fig. 9; Rayner', confidence: 93 },
+      { id: '15[c]', text: 'male plug with contactors', prior_art_coverage: 'Hoellwarth \'850; Wilson', confidence: 92 },
+      { id: '15[d]', text: 'exterior contactors', prior_art_coverage: 'Hoellwarth \'850; Infinea Tab M', confidence: 91 },
+    ],
+    claim2Label: 'Claim 19',
+    claim2Description: 'Docking system with protective cover and docking station',
+    claim2Elements: [
+      { id: '19[Pre]', text: 'A docking system, comprising', prior_art_coverage: 'Hoellwarth + Wilson; Thiers', confidence: 94 },
+      { id: '19[a]', text: 'the protective cover of claim 15', prior_art_coverage: 'See Claim 15 analysis', confidence: 93 },
+      { id: '19[b]', text: 'a docking station', prior_art_coverage: 'Hoellwarth \'343; Wilson; Thiers', confidence: 91 },
+    ],
+    prior_art: [
+      { name: 'Hoellwarth \'850', patent_number: '9,939,850', citation: 'U.S. Patent No. 9,939,850', relevance: 'Primary - shell, adapter, contactors', confidence: 95 },
+      { name: 'Wilson', patent_number: '8,867,209', citation: 'U.S. Patent No. 8,867,209', relevance: 'Cover with integrated adapter', confidence: 90 },
+      { name: 'Thiers', patent_number: '9,019,698', citation: 'U.S. Patent No. 9,019,698', relevance: 'Protective case with dock', confidence: 91 },
+      { name: 'Supran', patent_number: '8,553,408', citation: 'U.S. Patent No. 8,553,408', relevance: 'Protective sleeve', confidence: 86 },
+      { name: 'Kim '099', patent_number: 'WO 2014/010781', citation: 'WO 2014/010781', relevance: 'Charging apparatus', confidence: 88 },
+      { name: 'Rayner-494', patent_number: '9,229,494', citation: 'U.S. Patent No. 9,229,494', relevance: 'Protective housing', confidence: 84 },
+      { name: 'iPort LaunchPort', citation: 'iPort LaunchPort Product', relevance: 'Commercial prior art', confidence: 82 },
+      { name: 'Infinea Tab M', citation: 'Infinite Peripherals Infinea Tab M', relevance: 'Commercial product', confidence: 80 },
+    ],
+  },
+
+  '550': {
+    patent_number: 'US 12,341,550',
+    short_name: '550',
+    title: 'Docking Sleeve with Electrical Adapter',
+    filing_date: '2024-10-23',
+    issue_date: '2025-06-24',
+    assignee: 'National Products, Inc.',
+    overall_confidence: 95,
+    status: 'analyzed',
+    recommendation: 'File EPR',
+    summary: 'Strongest invalidity case in the portfolio. 8 independent claims all covered by Hoellwarth \'850, Thiers, and Supran combination.',
+    independentClaims: 8,
+    claim1Label: 'Claim 1',
+    claim1Description: 'Protective case with panel, skirt, male plug, and contactors',
+    claim1Elements: [
+      { id: '1[Pre]', text: 'A protective case for a portable electronic device', prior_art_coverage: 'Hoellwarth \'850; Thiers; Supran', confidence: 96 },
+      { id: '1[a]', text: 'a panel comprising an exterior surface', prior_art_coverage: 'Hoellwarth \'850; Thiers Fig. 9', confidence: 95 },
+      { id: '1[b]', text: 'a skirt surrounding the panel', prior_art_coverage: 'Hoellwarth \'850; Thiers', confidence: 94 },
+      { id: '1[c]', text: 'a male plug supported by the panel', prior_art_coverage: 'Hoellwarth \'850; Kim '099', confidence: 95 },
+      { id: '1[d]', text: 'contactors on the male plug', prior_art_coverage: 'Hoellwarth \'850; Rayner', confidence: 94 },
+    ],
+    claim2Label: 'Claim 7',
+    claim2Description: 'Docking system with protective case and docking station',
+    claim2Elements: [
+      { id: '7[Pre]', text: 'A docking system, comprising', prior_art_coverage: 'Hoellwarth; Thiers; Supran', confidence: 95 },
+      { id: '7[a]', text: 'the protective case of claim 1', prior_art_coverage: 'See Claim 1 analysis', confidence: 95 },
+      { id: '7[b]', text: 'a docking station with base', prior_art_coverage: 'Hoellwarth \'343; Thiers', confidence: 94 },
+    ],
+    claim3Label: 'Claims 9, 13, 17, 18, 21, 27',
+    claim3Description: 'Additional independent claims covering variations of protective case and docking system',
+    claim3Elements: [
+      { id: '9[Pre]', text: 'Protective case variant with different contactor arrangement', prior_art_coverage: 'Hoellwarth \'850; Thiers', confidence: 94 },
+      { id: '13[Pre]', text: 'Docking system variant', prior_art_coverage: 'Hoellwarth; Supran', confidence: 93 },
+      { id: '17[Pre]', text: 'Protective cover with shell configuration', prior_art_coverage: 'Hoellwarth \'850; Kim '099', confidence: 95 },
+      { id: '18[Pre]', text: 'Alternative protective case embodiment', prior_art_coverage: 'Thiers; Rayner-494', confidence: 92 },
+      { id: '21[Pre]', text: 'Docking system with alternative base', prior_art_coverage: 'Hoellwarth \'343; Thiers', confidence: 94 },
+      { id: '27[Pre]', text: 'System claim combining case and dock', prior_art_coverage: 'Full combination', confidence: 96 },
+    ],
+    prior_art: [
+      { name: 'Hoellwarth \'850', patent_number: '9,939,850', citation: 'U.S. Patent No. 9,939,850', relevance: 'Primary - comprehensive coverage', confidence: 96 },
+      { name: 'Thiers', patent_number: '9,019,698', citation: 'U.S. Patent No. 9,019,698', relevance: 'Protective case with dock interface', confidence: 93 },
+      { name: 'Supran', patent_number: '8,553,408', citation: 'U.S. Patent No. 8,553,408', relevance: 'Protective sleeve with docking', confidence: 88 },
+      { name: 'Kim '099', patent_number: 'WO 2014/010781', citation: 'WO 2014/010781', relevance: 'Charging apparatus', confidence: 90 },
+      { name: 'Rayner-494', patent_number: '9,229,494', citation: 'U.S. Patent No. 9,229,494', relevance: 'Protective housing', confidence: 86 },
+      { name: 'Hoellwarth \'343', patent_number: '9,595,343', citation: 'U.S. Patent No. 9,595,343', relevance: 'Docking station/base', confidence: 91 },
+      { name: 'iPort LaunchPort', citation: 'iPort LaunchPort Product', relevance: 'Commercial prior art', confidence: 84 },
+    ],
+  },
+}
+
+export function getPatentData(shortName: string): PatentAnalysis | null {
+  return PATENT_DATA[shortName] || null
+}
+
+export function getAllPatents(): PatentAnalysis[] {
+  return Object.values(PATENT_DATA).sort((a, b) => 
+    a.patent_number.localeCompare(b.patent_number)
+  )
+}
