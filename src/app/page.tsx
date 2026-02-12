@@ -14,6 +14,7 @@ interface Patent {
   overall_confidence: number | null
   status: string
   recommendation: string | null
+  hasEprDraft?: boolean
 }
 
 // Dynamic scoring based on prior art element coverage
@@ -23,7 +24,7 @@ const ALL_PATENTS: Patent[] = [
   { id: '140', patent_number: 'US 12,143,140', short_name: '140', title: 'Docking Sleeve with Electrical Adapter', overall_confidence: 91, status: 'analyzed', recommendation: 'File EPR' },
   { id: '141', patent_number: 'US 12,143,141', short_name: '141', title: 'Docking Sleeve with Electrical Adapter', overall_confidence: 93, status: 'analyzed', recommendation: 'File EPR' },
   { id: '142', patent_number: 'US 12,143,142', short_name: '142', title: 'Docking Sleeve with Electrical Adapter', overall_confidence: 95, status: 'analyzed', recommendation: 'File EPR' },
-  { id: '275', patent_number: 'US 10,778,275', short_name: '275', title: 'Docking Sleeve with Electrical Adapter', overall_confidence: 93, status: 'analyzed', recommendation: 'File EPR' },
+  { id: '275', patent_number: 'US 10,778,275', short_name: '275', title: 'Docking Sleeve with Electrical Adapter', overall_confidence: 93, status: 'analyzed', recommendation: 'File EPR', hasEprDraft: true },
   { id: '279', patent_number: 'US 9,195,279', short_name: '279', title: 'Docking Sleeve with Electrical Adapter', overall_confidence: 91, status: 'analyzed', recommendation: 'File EPR' },
   { id: '444', patent_number: 'US 9,331,444', short_name: '444', title: 'Docking Sleeve with Electrical Adapter', overall_confidence: 97, status: 'analyzed', recommendation: 'File EPR' },
   { id: '458', patent_number: 'US 11,165,458', short_name: '458', title: 'Docking Sleeve with Electrical Adapter', overall_confidence: 95, status: 'analyzed', recommendation: 'File EPR' },
@@ -137,15 +138,25 @@ export default async function HomePage() {
                     )}
                   </td>
                   <td className="px-5 py-4">
-                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                      patent.status === 'analyzed' 
-                        ? 'bg-[#00A3E1]/15 text-[#00A3E1]' 
-                        : patent.status === 'filed'
-                          ? 'bg-[#4CAF50]/15 text-[#4CAF50]'
-                          : 'bg-[#FFB74D]/15 text-[#FFB74D]'
-                    }`}>
-                      {patent.status === 'analyzed' ? 'Analyzed' : patent.status === 'filed' ? 'EPR Filed' : 'Pending'}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                        patent.status === 'analyzed' 
+                          ? 'bg-[#00A3E1]/15 text-[#00A3E1]' 
+                          : patent.status === 'filed'
+                            ? 'bg-[#4CAF50]/15 text-[#4CAF50]'
+                            : 'bg-[#FFB74D]/15 text-[#FFB74D]'
+                      }`}>
+                        {patent.status === 'analyzed' ? 'Analyzed' : patent.status === 'filed' ? 'EPR Filed' : 'Pending'}
+                      </span>
+                      {patent.hasEprDraft && (
+                        <Link 
+                          href={`/epr/${patent.short_name}`}
+                          className="inline-block px-2 py-1 rounded-full text-xs font-medium bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition-colors"
+                        >
+                          EPR Draft
+                        </Link>
+                      )}
+                    </div>
                   </td>
                   <td className="px-5 py-4">
                     {patent.status === 'analyzed' ? (

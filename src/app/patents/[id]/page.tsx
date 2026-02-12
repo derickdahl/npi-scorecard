@@ -59,7 +59,17 @@ export default async function PatentDetailPage({ params }: PageProps) {
         <div className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 mb-6">
           <div className="flex justify-between items-start">
             <div>
-              <div className="text-[#00A3E1] text-sm font-medium mb-1">{patent.patent_number}</div>
+              <div className="flex items-center gap-3 mb-1">
+                <div className="text-[#00A3E1] text-sm font-medium">{patent.patent_number}</div>
+                {id === '275' && (
+                  <Link 
+                    href={`/epr/${id}`}
+                    className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition-colors"
+                  >
+                    📄 View EPR Draft
+                  </Link>
+                )}
+              </div>
               <h2 className="text-2xl font-semibold mb-2">{patent.title}</h2>
               <div className="text-sm text-gray-400">
                 Assignee: {patent.assignee} • Filed: {patent.filing_date} • Issued: {patent.issue_date}
