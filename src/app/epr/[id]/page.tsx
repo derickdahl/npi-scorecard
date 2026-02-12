@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getPatentData, PATENT_DATA } from '@/lib/patent-data'
+import { getPatentData } from '@/lib/patent-data'
 import EPRDocument from '@/components/EPRDocument'
 import EPRDownloadButton from '@/components/EPRDownloadButton'
 
@@ -8,13 +8,7 @@ interface PageProps {
   params: Promise<{ id: string }>
 }
 
-export const dynamicParams = true
-
-export async function generateStaticParams() {
-  // Generate EPR pages for all 18 patents
-  const ids = ['140', '141', '142', '275', '279', '444', '458', '535', '550', '387', '639', '026', '330', '658', '399', '515', '334', '884']
-  return ids.map(id => ({ id }))
-}
+export const revalidate = 3600 // Revalidate every hour
 
 export default async function EPRDraftPage({ params }: PageProps) {
   const { id } = await params
