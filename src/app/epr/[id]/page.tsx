@@ -8,7 +8,8 @@ interface PageProps {
   params: Promise<{ id: string }>
 }
 
-export const revalidate = 3600 // Revalidate every hour
+// Force dynamic rendering, don't pre-render
+export const dynamic = 'force-dynamic'
 
 export default async function EPRDraftPage({ params }: PageProps) {
   const { id } = await params
