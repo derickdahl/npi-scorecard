@@ -8,28 +8,12 @@ interface PageProps {
   params: Promise<{ id: string }>
 }
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
   // Generate EPR pages for all 18 patents
-  return [
-    { id: '140' },
-    { id: '141' },
-    { id: '142' },
-    { id: '275' },
-    { id: '279' },
-    { id: '444' },
-    { id: '458' },
-    { id: '535' },
-    { id: '550' },
-    { id: '387' },
-    { id: '639' },
-    { id: '026' },
-    { id: '330' },
-    { id: '658' },
-    { id: '399' },
-    { id: '515' },
-    { id: '334' },
-    { id: '884' },
-  ]
+  const ids = ['140', '141', '142', '275', '279', '444', '458', '535', '550', '387', '639', '026', '330', '658', '399', '515', '334', '884']
+  return ids.map(id => ({ id }))
 }
 
 export default async function EPRDraftPage({ params }: PageProps) {
@@ -57,19 +41,25 @@ export default async function EPRDraftPage({ params }: PageProps) {
               </Link>
             </div>
             <div className="flex items-center gap-3">
-              <EPRDownloadButton patentId={id} patentNumber={patent.patent_number} />
+              <EPRDownloadButton patentId={patent.short_name} />
               <Link 
                 href={`/patents/${id}`}
                 className="text-sm text-gray-400 hover:text-white transition-colors"
               >
-                ← Back
+                ← Analysis
               </Link>
             </div>
           </header>
 
+          <EPRDocument patent={patent} />
+
+          {/* Footer */}
+          <footer className="text-center text-sm text-gray-500 mt-8 pt-6 border-t border-white/[0.08]">
+            <p>DRAFT — For Review Purposes Only</p>
+            <p className="mt-2">NPI Patent Tracker • Sonance Legal</p>
+          </footer>
         </div>
       </div>
-      <EPRDocument patent={patent} />
     </>
   )
 }
