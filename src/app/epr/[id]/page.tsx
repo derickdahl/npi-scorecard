@@ -41,7 +41,7 @@ export default async function EPRDraftPage({ params }: PageProps) {
               </Link>
             </div>
             <div className="flex items-center gap-3">
-              <EPRDownloadButton patentId={patent.short_name} />
+              <EPRDownloadButton patentId={patent.short_name} patentNumber={patent.patent_number} />
               <Link 
                 href={`/patents/${id}`}
                 className="text-sm text-gray-400 hover:text-white transition-colors"
